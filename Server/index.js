@@ -13,7 +13,7 @@ const app = express()
 app.use(cors())
 app.use(express.json())
 
-mongoose.connect(process.env.URI)
+mongoose.connect('mongodb+srv://muhammad:helloworld123@jobster.r7jsbjp.mongodb.net/jobster?retryWrites=true&w=majority')
 mongoose.connection.once('open', () => console.log('connected to MongoDB'))
 app.get('/', (req, res) => {
     res.send('Hi, there...')
