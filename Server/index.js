@@ -24,7 +24,7 @@ app.get('/auth', (req, res) => {
         msg: 'no token...',
         type: 'danger'
     })
-    jwt.verify(token, process.env.TOKEN_SECRET, (err, decode) => {
+    jwt.verify(token, 'token%secret%', (err, decode) => {
         if (err) return res.json({
             msg: 'not a valid token',
             type: 'danger'
@@ -50,7 +50,7 @@ app.post('/register', (req, res) => {
                 myID,
                 password: hash
             }).then(() => {
-                const token = jwt.sign({ myID, name }, process.env.TOKEN_SECRET, { expiresIn: process.env.EXPIRE_TOKEN })
+                const token = jwt.sign({ myID, name }, 'token%secret%', { expiresIn: '1h' })
                 res.json({
                     token,
                     msg: 'registered successfully !',
@@ -71,7 +71,7 @@ app.post('/login', (req, res) => {
             const { name, myID } = results
             bcrypt.compare(password, results.password).then((resultCondition) => {
                 if (resultCondition) {
-                    const token = jwt.sign({ name, myID }, process.env.TOKEN_SECRET, { expiresIn: process.env.EXPIRE_TOKEN })
+                    const token = jwt.sign({ name, myID }, 'token%secret%', { expiresIn: '1h' })
                     res.json({
                         token, msg: 'logged in !',
                         type: 'success'
