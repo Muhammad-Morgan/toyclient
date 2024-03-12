@@ -9,20 +9,20 @@ const Products = () => {
     const [products, setProducts] = useState([])
     const { userInfo, updateUserInfo, closeSubmenu } = useGlobalContext()
     const getCat = (cat) => {
-        axios.get(`http://localhost:5000/products?category=${cat}`).then(({ data }) => {
+        axios.get(`https://toyserver-sage.vercel.app/products?category=${cat}`).then(({ data }) => {
             const { newList } = data
             setProducts(newList)
         }).catch(err => console.log(err))
     }
     useEffect(() => {
-        axios.get(`http://localhost:5000/products?category=${category}`).then(({ data }) => {
+        axios.get(`https://toyserver-sage.vercel.app/products?category=${category}`).then(({ data }) => {
             const { newList } = data
             setProducts(newList)
         }).catch(err => console.log(err))
     }, [])
     useEffect(() => {
         const localToken = localStorage.getItem('localToken')
-        axios.get(`http://localhost:5000/auth?token=${localToken}`).then(({ data }) => {
+        axios.get(`https://toyserver-sage.vercel.app/auth?token=${localToken}`).then(({ data }) => {
             const { myToken, type } = data
             if (type !== 'success') {
                 navigate('/login')

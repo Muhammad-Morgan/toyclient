@@ -11,7 +11,7 @@ const Home = () => {
     const {userInfo,updateUserInfo} = useGlobalContext()
     useEffect(() => {
         const localToken = localStorage.getItem('localToken')
-        axios.get(`http://localhost:5000/auth?token=${localToken}`).then(({ data }) => {
+        axios.get(`https://toyserver-sage.vercel.app/auth?token=${localToken}`).then(({ data }) => {
             const { type, myToken } = data
             if(type === 'success'){
                 const myData = jwtDecode(myToken);

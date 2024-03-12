@@ -25,7 +25,7 @@ const Register = () => {
       ...user,
       myID: new Date().getTime().toString()
     }
-    axios.post('http://localhost:5000/register', userContainer).then(({ data }) => {
+    axios.post('https://toyserver-sage.vercel.app/register', userContainer).then(({ data }) => {
       const { token, msg, type } = data
       localStorage.setItem('localToken',token)
       const myData = jwtDecode(token)

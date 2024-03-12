@@ -21,7 +21,7 @@ const Login = () => {
   }
   const handleClick = (e) => {
     e.preventDefault()
-    axios.post('http://localhost:5000/login', user).then(({ data }) => {
+    axios.post('https://toyserver-sage.vercel.app/login', user).then(({ data }) => {
       const { token, msg, type } = data
       if(type === 'success'){
         localStorage.setItem('localToken',token)
